@@ -26,13 +26,11 @@ export function albumOverlapsMonth(album, month, year) {
 export function filterAlbums(albums, state) {
   const keyword = state.keyword.trim().toLocaleLowerCase("ko-KR");
   return albums.filter((album) => {
-    const departmentMatch = !state.department || album.departments.includes(state.department);
     const eventMatch = !state.event || album.events.includes(state.event);
     const yearMatch = albumOverlapsYear(album, state.year);
     const monthMatch = albumOverlapsMonth(album, state.month, state.year);
-    const placeMatch = !state.place || album.place === state.place;
     const keywordMatch = !keyword || album.title.toLocaleLowerCase("ko-KR").includes(keyword);
-    return departmentMatch && eventMatch && yearMatch && monthMatch && placeMatch && keywordMatch;
+    return eventMatch && yearMatch && monthMatch && keywordMatch;
   });
 }
 export function sortAlbums(albums, direction) {

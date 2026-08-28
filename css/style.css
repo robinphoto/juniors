@@ -4,12 +4,14 @@ body { margin:0; background:var(--background); color:var(--text); font-family:-a
 button,input,select { font:inherit; }
 .page-shell { width:min(calc(100% - 48px),var(--max-width)); margin:0 auto; padding:72px 0 96px; }
 .profile { display:grid; grid-template-columns:104px minmax(0,1fr); gap:28px; align-items:start; padding-bottom:26px; }
+.profile__aside { display:flex; flex-direction:column; align-items:center; }
 .profile__avatar { display:block; width:104px; aspect-ratio:1; border-radius:50%; background:#ecebe7; object-fit:cover; }
+.profile__content { display:flex; min-width:0; flex-direction:column; align-items:flex-start; gap:16px; }
 .eyebrow { margin:3px 0 10px; color:var(--muted); font-size:11px; letter-spacing:.16em; }
 h1 { margin:0; font-size:clamp(26px,3vw,39px); font-weight:650; letter-spacing:-.035em; }
 .profile__credit { margin:12px 0 0; font-size:14px; }
-.profile__description { margin:18px 0 0; color:var(--muted); font-size:14px; line-height:1.75; }
-.profile__stats { display:flex; flex-wrap:wrap; gap:22px; margin-top:19px; color:#4f4f4f; font-size:13px; }
+.profile__description { margin:0; color:var(--muted); font-size:14px; line-height:1.75; }
+.profile__stats { display:flex; flex-wrap:wrap; gap:22px; margin:0; color:#4f4f4f; font-size:13px; }
 .profile__stats span { display:inline-flex; align-items:center; gap:7px; }
 .profile__stats img { width:17px; height:17px; }
 .filters { width:min(100%,1170px); border-top:0; }
@@ -66,8 +68,8 @@ h1 { margin:0; font-size:clamp(26px,3vw,39px); font-weight:650; letter-spacing:-
   .eyebrow { margin-top:1px; font-size:9px; }
   h1 { font-size:23px; }
   .profile__credit { margin-top:8px; font-size:12px; }
-  .profile__description { grid-column:1/-1; margin-top:0; font-size:13px; }
-  .profile__stats { grid-column:1/-1; margin-top:0; }
+  .profile__content { gap:14px; }
+  .profile__description { font-size:13px; }
   .filter-group { grid-template-columns:1fr; gap:11px; }
   .primary-filters .filter-group { padding:15px 14px; }
   .primary-filters .filter-group:first-child { padding-bottom:10px; }

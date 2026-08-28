@@ -1,10 +1,10 @@
 import { DATA_BASE_URL } from "./config.js";
 import { filterAlbums, sortAlbums } from "./filter.js";
 
-const state = { department:"", event:"", year:"", month:"", place:"", openMode:"new-window", keyword:"", sort:"newest" };
+const state = { event:"", year:"", month:"", openMode:"new-window", keyword:"", sort:"newest" };
 let albums = [];
 const elements = {
-  departments:document.querySelector("#department-filters"), events:document.querySelector("#event-filters"), years:document.querySelector("#year-filters"), months:document.querySelector("#month-filters"), places:document.querySelector("#place-filters"), openMode:document.querySelector("#open-mode-toggle"),
+  events:document.querySelector("#event-filters"), years:document.querySelector("#year-filters"), months:document.querySelector("#month-filters"), openMode:document.querySelector("#open-mode-toggle"),
   keyword:document.querySelector("#keyword-input"), sort:document.querySelector("#sort-toggle"), summary:document.querySelector("#result-summary"), totalAlbums:document.querySelector("#total-albums"), totalPhotos:document.querySelector("#total-photos"),
   grid:document.querySelector("#album-grid"), empty:document.querySelector("#empty-state"), error:document.querySelector("#error-state"), template:document.querySelector("#album-card-template")
 };
@@ -29,12 +29,10 @@ function makeFilterButton(label,group,value) {
 }
 function updatePressedStates() { document.querySelectorAll(".filter-button").forEach((button)=>button.setAttribute("aria-pressed",String(state[button.dataset.group]===button.dataset.value))); }
 function renderFilters(categories) {
-  [...categories.departments].sort((a,b)=>a.order-b.order).forEach((item)=>elements.departments.append(makeFilterButton(item.name,"department",item.id)));
   [...categories.events].sort((a,b)=>a.order-b.order).forEach((item)=>elements.events.append(makeFilterButton(item.name,"event",item.id)));
   const years=[...new Set(albums.flatMap((album)=>{ const first=Number(album.startDate.slice(0,4)); const last=Number((album.endDate??album.startDate).slice(0,4)); return Array.from({length:last-first+1},(_,index)=>first+index); }))].sort((a,b)=>b-a);
   years.forEach((year)=>elements.years.append(makeFilterButton(String(year),"year",String(year))));
   Array.from({length:12},(_,index)=>index+1).forEach((month)=>elements.months.append(makeFilterButton(`${month}월`,"month",String(month))));
-  [...categories.places].sort((a,b)=>a.order-b.order).forEach((item)=>elements.places.append(makeFilterButton(item.name,"place",item.id)));
 }
 function updateStats() {
   const photos=albums.reduce((sum,album)=>sum+album.photoCount,0);
@@ -54,7 +52,7 @@ function render() {
   const photos=visible.reduce((sum,album)=>sum+album.photoCount,0); elements.summary.textContent=`검색결과 ${visible.length.toLocaleString("ko-KR")}개 앨범, ${photos.toLocaleString("ko-KR")}장`; elements.empty.hidden=visible.length!==0;
 }
 async function initialize() {
-  try { const [albumData,categories,index]=await Promise.all([loadJson("albums.json"),loadJson("church-categories.json"),loadJson("church-index.json")]); albums=albumData.filter((album)=>album.sites.includes("church")).map((album)=>({...album,departments:index[album.id]?.departments ?? [],events:index[album.id]?.events ?? []})); updateStats(); renderFilters(categories); render(); }
+  try { const [albumData,categories,index]=await Promise.all([loadJson("albums.json"),loadJson("juniors-categories.json"),loadJson("juniors-index.json")]); albums=albumData.filter((album)=>album.sites.includes("juniors") && Object.hasOwn(index,album.id)).map((album)=>({...album,events:index[album.id].events ?? []})); updateStats(); renderFilters(categories); render(); }
   catch(error) { console.error(error); elements.summary.textContent="앨범 데이터를 불러오지 못했습니다."; elements.error.hidden=false; }
 }
 elements.keyword.addEventListener("input",(event)=>{ state.keyword=event.target.value; render(); });

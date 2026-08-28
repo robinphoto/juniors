@@ -3,19 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="검단중앙교회 사진 앨범">
-    <title>검단중앙교회 사진 앨범</title>
+    <meta name="description" content="검단중앙교회 소년부 사진 앨범">
+    <title>검단중앙교회 소년부 사진 앨범</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <main class="page-shell">
       <header class="profile">
-        <img class="profile__avatar" data-asset="profile/church.png" alt="김동은 안수집사 프로필 사진">
-        <div>
-          <p class="eyebrow">CHURCH PHOTO ARCHIVE</p>
-          <h1>검단중앙교회 사진 앨범</h1>
-          <p class="profile__credit">촬영 — 김동은 안수집사</p>
-          <p class="profile__description">교회의 예배와 행사, 공동체의 소중한 순간을 기록합니다.<br>앨범을 선택하면 Google 포토에서 전체 사진을 볼 수 있습니다.</p>
+        <div class="profile__aside">
+          <img class="profile__avatar" data-asset="profile/juniors.png" alt="검단중앙교회 소년부 프로필 이미지">
+        </div>
+        <div class="profile__content">
+          <div class="profile__title">
+            <p class="eyebrow">CHURCH PHOTO ARCHIVE</p>
+            <h1>검단중앙교회 소년부 사진 앨범</h1>
+          </div>
+          <p class="profile__description">소년부의 예배와 행사, 은혜의 소중한 순간들을 기록합니다.<br>앨범을 선택하면 Google 포토에서 전체 사진을 볼 수 있습니다.</p>
           <div class="profile__stats" aria-label="전체 앨범 통계">
             <span><img data-icon="folder.svg" alt=""><span id="total-albums">총 앨범 수 계산 중</span></span>
             <span><img data-icon="image.svg" alt=""><span id="total-photos">총 사진 수 계산 중</span></span>
@@ -26,20 +29,15 @@
       <section class="filters" aria-label="앨범 검색 조건">
         <div class="primary-filters">
           <div class="filter-group">
-            <h2>부서별</h2>
-            <div class="filter-buttons" id="department-filters"></div>
-          </div>
-          <div class="filter-group">
-            <h2>행사별</h2>
+            <h2>분류</h2>
             <div class="filter-buttons" id="event-filters"></div>
           </div>
         </div>
         <details class="advanced-search">
-          <summary>검색 옵션 <span>연도, 월, 장소와 키워드</span><img class="chevron chevron--down" data-icon="chevron-down.svg" alt=""><img class="chevron chevron--up" data-icon="chevron-up.svg" alt=""></summary>
+          <summary>검색 옵션 <span>연도, 월과 키워드</span><img class="chevron chevron--down" data-icon="chevron-down.svg" alt=""><img class="chevron chevron--up" data-icon="chevron-up.svg" alt=""></summary>
           <div class="advanced-search__body">
             <div class="filter-group"><h2>연도</h2><div class="filter-buttons" id="year-filters"></div></div>
             <div class="filter-group"><h2>월</h2><div class="filter-buttons" id="month-filters"></div></div>
-            <div class="filter-group"><h2>장소</h2><div class="filter-buttons" id="place-filters"></div></div>
             <label class="keyword-search"><span>키워드</span><span class="keyword-search__field"><input id="keyword-input" type="search" placeholder="앨범명 검색" autocomplete="off"><img data-icon="search.svg" alt=""></span></label>
           </div>
         </details>
